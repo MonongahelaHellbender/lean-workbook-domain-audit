@@ -1,0 +1,7 @@
+# census_real.py / real_oracle.py (exponent-truncation class) need these:
+mpmath>=1.3
+sympy>=1.12
+# fetch_lw_parquet.py needs a parquet reader:
+pyarrow>=14
+# domain_oracle.py, census_oracle.py, scan_domain_hazards.py use only the Python stdlib.
+# The Lean kernel cross-checks additionally require a Lean 4 + Mathlib project (set MATHLIB_PROJECT).

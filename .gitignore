@@ -1,0 +1,5 @@
+# Regenerable scratch + dataset caches (re-create with fetch_lw_parquet.py / the census scripts).
+# The verified findings are committed under results/.
+examples/_*
+__pycache__/
+*.pyc
