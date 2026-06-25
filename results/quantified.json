@@ -1,0 +1,373 @@
+{
+  "dataset": "internlm/Lean-Workbook",
+  "method": "counterexample search + kernel confirmation (native_decide for ℕ, norm_num for ℝ)",
+  "nat_false_universals": {
+    "kernel_confirmed_false": 27,
+    "genuine_missing_hypothesis": 5,
+    "domain_bug_not_hypothesis": 5,
+    "genuinely_wrong_math": 13,
+    "undetermined": 3,
+    "samples": [
+      {
+        "id": "lean_workbook_plus_3854",
+        "body": "(1 + 1 / n)^n < (1 + 1 / (n + 1))^(n + 1)",
+        "witness": {
+          "n": 1
+        },
+        "kind": "ℕ-truncation-induced",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_7057",
+        "body": "(7 / 4) ^ (n + 1) > (7 / 4) ^ n + (7 / 4) ^ (n - 1)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "undetermined-over-ℚ",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_7501",
+        "body": "1 / n * (1 / k + 1 / (n - k)) = 1 / (k * (n - k))",
+        "witness": {
+          "n": 1,
+          "k": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "holds for n≥2/k≥2"
+      },
+      {
+        "id": "lean_workbook_plus_9975",
+        "body": "n^n > (n + 1)^(n - 1)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "undetermined-over-ℚ",
+        "recovered": "holds for n≥2"
+      },
+      {
+        "id": "lean_workbook_plus_13416",
+        "body": "1 / (3 * n + 1) < 1 / (n + 1)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_13667",
+        "body": "(3^k)^6 - 4 * (3^(2 * k))^3 + 3^(6 * k + 1) = 0",
+        "witness": {
+          "k": 0
+        },
+        "kind": "ℕ-truncation-induced",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_13851",
+        "body": "(2^(15 + 1) * (16 * 17)) / 2 = 2^18 * 17",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_21327",
+        "body": "2016^2 - 2015 * 2017 = 2026",
+        "witness": {
+          "x": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_24458",
+        "body": "(4 * a + 2) / (5 * a + 1) < 321 / 400",
+        "witness": {
+          "a": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_26135",
+        "body": "2011 * (2012 * (2012 + 1)) * (2013 * (2013 + 1) * (2013 + 2)) - 2013 * (2011 * (2011 + 1)) * (2012 * (2012 + 1) * (2012 + 2)) = 0",
+        "witness": {
+          "a": 0,
+          "b": 0,
+          "c": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_32825",
+        "body": "(1 + 1 / n)^n ≤ (1 + 1 / (n + 1))^(n + 1)",
+        "witness": {
+          "n": 1
+        },
+        "kind": "ℕ-truncation-induced",
+        "recovered": "holds for n≥2"
+      },
+      {
+        "id": "lean_workbook_plus_35935",
+        "body": "(2 * n / (2 * n + 1)) > (2 * n - 1) / (2 * n)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_36503",
+        "body": "(10 ^ 2002 - 1) / 9 = 111111111",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_43469",
+        "body": "(1 + 1 / k) ^ (1 / k) < (1 + 1 / (k + 1)) ^ (1 / (k + 1))",
+        "witness": {
+          "k": 1
+        },
+        "kind": "undetermined-over-ℚ",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_47225",
+        "body": "(c + 1) / (2 * b + c) + b / (2 * c + b) ≤ 1",
+        "witness": {
+          "b": 0,
+          "c": 1
+        },
+        "kind": "genuinely-false",
+        "recovered": "holds for b≥1/c≥1"
+      },
+      {
+        "id": "lean_workbook_plus_48512",
+        "body": "1 / (n + 2) < 1 / n",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_50449",
+        "body": "(1 + 1 / (n + 1)) ^ (n + 1) ≥ 2",
+        "witness": {
+          "n": 1
+        },
+        "kind": "ℕ-truncation-induced",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_60171",
+        "body": "(1 / (3 * n + 1)) * ((2 * n + 1) / (2 * (n + 1)))^2 < 1 / (3 * n + 4)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_61578",
+        "body": "(2 * n + 1)^n > (2 * n)^n + (2 * n - 1)^n",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "holds for n≥3"
+      },
+      {
+        "id": "lean_workbook_plus_73375",
+        "body": "(1 + 1 / n)^(n + 1) > (1 + 1 / (n + 1))^(n + 2)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_73599",
+        "body": "(1 + 1 / (n + 1)) < (1 + 2 / n)^(n + 1)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_73978",
+        "body": "(n * (n + 2) * (n ^ 2 + 1)) / n ^ 4 = (n ^ 2 - 1 + n + 1 + n - 1 + 1) / (n ^ 2 - 1) * ((n ^ 2 - 1) * (n ^ 2 + 1)) / n ^ 4",
+        "witness": {
+          "n": 1
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_76824",
+        "body": "1 / (n * (n + 1)) < 1 / 2010",
+        "witness": {
+          "n": 0
+        },
+        "kind": "ℕ-truncation-induced",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_78852",
+        "body": "(1 / (2 * n - 1) - 1 / ((2 * n) ^ 2)) > (1 / (2 * n - 1) - 1 / ((2 * n - 1) ^ 2))",
+        "witness": {
+          "n": 0
+        },
+        "kind": "ℕ-truncation-induced",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_80909",
+        "body": "(k/(k+1))^(k^2) ≤ 1/(k^2)",
+        "witness": {
+          "k": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "holds for k≥1"
+      },
+      {
+        "id": "lean_workbook_plus_81072",
+        "body": "(1 + 1 / (n + 1)) ^ (n + 2) < (1 + 1 / n) ^ (n + 1)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_81364",
+        "body": "(2 * n + 1) ^ n ≥ (2 * n) ^ n + (2 * n - 1) ^ n",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "holds for n≥1"
+      }
+    ]
+  },
+  "real_false_universals": {
+    "kernel_confirmed_false": 91,
+    "recovered_holds_for_vars_gt_0": 39,
+    "false_even_on_positive_reals": 52,
+    "samples_false_on_positives": [
+      {
+        "id": "lean_workbook_plus_606",
+        "body": "c^3 ≤ 2 * c^2",
+        "witness": {
+          "c": "3"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_1727",
+        "body": "(x^2 / (1 + x^2)) ≤ 3 / 4",
+        "witness": {
+          "x": "2"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_3810",
+        "body": "(a^3 + 1)^2 ≥ (a^2 + 1) * (a^4 + 1)",
+        "witness": {
+          "a": "-1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_4390",
+        "body": "a^2 + b^2 + (3 - a - b)^2 + 3 / 2 * a * b * (3 - a - b) - 9 / 2 ≥ 0",
+        "witness": {
+          "a": "-1",
+          "b": "2"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_5906",
+        "body": "a * b * (a - b) ^ 2 + 2 * (a * b - 1) * (a ^ 2 + b ^ 2) + 4 * (a * b - 2) * (a + b - 2) ≥ 0",
+        "witness": {
+          "a": "1",
+          "b": "-3"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_6269",
+        "body": "2 * b * c + 2 * b^2 + 2 * c^2 ≤ 6 + b^3 * c + b * c^3",
+        "witness": {
+          "b": "1",
+          "c": "-2"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_7811",
+        "body": "(x^4 - 4 * x^3 + 8 * x^2 + 4 * x + 1) * (x^4 + 4 * x^3 + 8 * x^2 - 4 * x + 1) = x^8 + 8 * x^6 + 24 * x^4 + 16 * x^2 + 1",
+        "witness": {
+          "x": "1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_8036",
+        "body": "(x^2 - 2 * x + 2) / (3 * x^2 - 10 * x + 6) + 3 * x / (x^2 + 2) = 1",
+        "witness": {
+          "x": "1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_9060",
+        "body": "(-(27 / 392) * (a - 1 / 3) + 9 / 28) ≥ 1 / (a ^ 2 + 3)",
+        "witness": {
+          "a": "5"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_9481",
+        "body": "(x - 2) * (x - 1) * x * (x + 1) + (y - 2) * (y - 1) * y * (y + 1) - (x - 1) * (y - 1) * (4 * x ^ 2 - 5 * x * y + 4 * y ^ 2 - 4) = 0",
+        "witness": {
+          "x": "1",
+          "y": "-2"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_12013",
+        "body": "x^5 + 1/(x^5) - 1 = (x + 1/x - 1)*((x + 1/x - 1)*(x^3 + 2*x^2 - 2*x - 6) + 5)",
+        "witness": {
+          "x": "1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_13140",
+        "body": "(a + b) / (a * b) ≥ 24 / (a ^ 2 * b ^ 2 + 4 * a * b + 4)",
+        "witness": {
+          "a": "1",
+          "b": "1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_14247",
+        "body": "6 - 5 * x + 6 * c + 3 * x^2 - 3 * c^2 ≥ 0",
+        "witness": {
+          "x": "1",
+          "c": "-1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_15544",
+        "body": "(4 * p + 9) * (p - 3) ≥ (t - 3) * (36 - 8 * p)",
+        "witness": {
+          "p": "1",
+          "t": "3"
+        }
+      }
+    ]
+  },
+  "note": "'false as formalized' is dominated by dropped side-conditions (missing positivity/range), not wrong math; every counterexample is kernel-confirmed."
+}

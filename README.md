@@ -4,14 +4,25 @@ A reproducible, kernel-validated audit of **domain-fidelity bugs** in
 [`internlm/Lean-Workbook`](https://huggingface.co/datasets/internlm/Lean-Workbook), a widely-used
 autoformalized theorem-proving corpus.
 
-**Finding:** across 13,517 unique statements, **49 closed-arithmetic statements claim something
-other than their evident intent** because of a silent domain choice — every one independently
-confirmed by the Lean 4 kernel. These are defective formalizations: false (or vacuously true)
-as written, and several are `:= by sorry`-stubbed (unprovable in their intended domain).
+**Finding:** across 13,517 unique statements, the checkers flag **167 statements that claim
+something other than their evident intent**, every one independently confirmed by the Lean 4
+kernel:
 
-This is the "the verification gap is in the *statement*, not the proof" thesis, measured on real
-third-party data: an autoformalizer can hand you a perfectly checkable proof of a subtly *wrong*
-statement, and "did it compile?" will never catch it.
+- **49 closed-arithmetic domain hazards** (a silent ℕ/ℚ or exponent-truncation domain choice
+  flips the truth value) — see [`results/HAZARDS.md`](results/HAZARDS.md);
+- **27 false universals over ℕ** + **91 false universals over ℝ** (a quantified statement that is
+  false as formalized, disproved by a kernel-confirmed counterexample) — see
+  [`results/QUANTIFIED.md`](results/QUANTIFIED.md).
+
+These are defective formalizations: false (or vacuously true) as written, the great majority
+`:= by sorry`-stubbed (so presented as provable targets). This is the "the verification gap is in
+the *statement*, not the proof" thesis, measured on real third-party data: an autoformalizer can
+hand you a perfectly checkable proof of a subtly *wrong* statement, and "did it compile?" will
+never catch it.
+
+**The recurring, honest lesson:** "false as formalized" is dominated by *dropped side-conditions*
+(a missing domain ascription, or a missing `n ≥ 1` / `a,b,c ≥ 0`), not by wrong mathematics — and
+the checkers *recover* those side-conditions automatically where they exist.
 
 ## The two defect classes
 
@@ -60,6 +71,9 @@ on its own**:
 | `scan_domain_hazards.py` | scans a row file for closed-arithmetic candidates |
 | `census_oracle.py` | exact ℕ/ℚ census, validated vs the kernel + `native_decide` |
 | `census_real.py` | exponent-truncation census (as-formalized vs intended-ℝ) |
+| `quant_oracle.py` | variable-aware ℕ/ℚ evaluator (for quantified statements) |
+| `quant_falsifier.py` | ℕ false-universal search + missing-hypothesis recovery (native_decide) |
+| `quant_real.py` | ℝ false-universal search + positivity recovery (norm_num) |
 | `fetch_lw_parquet.py` | downloads the dataset (one parquet; avoids the paged-API rate limit) |
 
 ## Reproduce
@@ -75,6 +89,8 @@ python fetch_lw_parquet.py        # -> examples/_lw_full.json
 python census_oracle.py examples/_lw_full.json   # 42 ℕ/ℚ hazards, kernel-validated
 python census_real.py             # 7 exponent-truncation hazards (needs mpmath+sympy)
 python lane_fidelity.py           # the fidelity checker's demo battery (incl. 2 real fixtures)
+python quant_falsifier.py examples/_lw_full.json   # 27 ℕ false universals + hypothesis recovery
+python quant_real.py examples/_lw_full.json        # 91 ℝ false universals + positivity recovery
 ```
 
 The oracles run standalone without Lean (`python domain_oracle.py`, `python real_oracle.py` run
