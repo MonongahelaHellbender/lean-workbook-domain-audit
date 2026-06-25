@@ -4,14 +4,14 @@ A reproducible, kernel-validated audit of **domain-fidelity bugs** in
 [`internlm/Lean-Workbook`](https://huggingface.co/datasets/internlm/Lean-Workbook), a widely-used
 autoformalized theorem-proving corpus.
 
-**Finding:** across 13,517 unique statements, the checkers flag **167 statements that claim
+**Finding:** across 13,517 unique statements, the checkers flag **412 statements that claim
 something other than their evident intent**, every one independently confirmed by the Lean 4
 kernel:
 
 - **49 closed-arithmetic domain hazards** (a silent ℕ/ℚ or exponent-truncation domain choice
   flips the truth value) — see [`results/HAZARDS.md`](results/HAZARDS.md);
-- **27 false universals over ℕ** + **91 false universals over ℝ** (a quantified statement that is
-  false as formalized, disproved by a kernel-confirmed counterexample) — see
+- **27 false universals over ℕ** + **320 false universals over ℝ** + **16 false *despite a stated
+  hypothesis*** (quantified statements disproved by a kernel-confirmed counterexample) — see
   [`results/QUANTIFIED.md`](results/QUANTIFIED.md).
 
 These are defective formalizations: false (or vacuously true) as written, the great majority
@@ -20,9 +20,12 @@ the *statement*, not the proof" thesis, measured on real third-party data: an au
 hand you a perfectly checkable proof of a subtly *wrong* statement, and "did it compile?" will
 never catch it.
 
-**The recurring, honest lesson:** "false as formalized" is dominated by *dropped side-conditions*
-(a missing domain ascription, or a missing `n ≥ 1` / `a,b,c ≥ 0`), not by wrong mathematics — and
-the checkers *recover* those side-conditions automatically where they exist.
+**The recurring lesson — and a control that proves it.** "False as formalized" is dominated by
+*dropped side-conditions* (a missing domain ascription, or a missing `n ≥ 1` / `a,b,c ≥ 0`), not by
+wrong mathematics. The control: of ℝ universals **without** a hypothesis, **24%** are false; of those
+that **keep** a hypothesis, only **2.2%** are. Drop the constraint and the formalization breaks;
+keep it and it's almost always faithful — and the checkers *recover* the dropped constraint
+automatically where one exists.
 
 ## The two defect classes
 
@@ -74,6 +77,7 @@ on its own**:
 | `quant_oracle.py` | variable-aware ℕ/ℚ evaluator (for quantified statements) |
 | `quant_falsifier.py` | ℕ false-universal search + missing-hypothesis recovery (native_decide) |
 | `quant_real.py` | ℝ false-universal search + positivity recovery (norm_num) |
+| `quant_real_hyp.py` | ℝ universals WITH hypotheses — false-despite-constraint (the control) |
 | `fetch_lw_parquet.py` | downloads the dataset (one parquet; avoids the paged-API rate limit) |
 
 ## Reproduce
@@ -90,7 +94,8 @@ python census_oracle.py examples/_lw_full.json   # 42 ℕ/ℚ hazards, kernel-va
 python census_real.py             # 7 exponent-truncation hazards (needs mpmath+sympy)
 python lane_fidelity.py           # the fidelity checker's demo battery (incl. 2 real fixtures)
 python quant_falsifier.py examples/_lw_full.json   # 27 ℕ false universals + hypothesis recovery
-python quant_real.py examples/_lw_full.json        # 91 ℝ false universals + positivity recovery
+python quant_real.py examples/_lw_full.json        # 320 ℝ false universals + positivity recovery
+python quant_real_hyp.py examples/_lw_full.json    # the control: 16/723 false-despite-hypothesis
 ```
 
 The oracles run standalone without Lean (`python domain_oracle.py`, `python real_oracle.py` run

@@ -82,7 +82,7 @@ def parse_quant_real(fs):
                 return None
             vs = vs + nm.replace("(", " ").replace(")", " ").split()
         goal = body.strip()
-    if not vs or len(vs) > 2:
+    if not vs or len(vs) > 3:           # widened to 3 ℝ vars
         return None
     if any(b in goal for b in BAD):
         return None
