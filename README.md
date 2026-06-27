@@ -31,6 +31,14 @@ that **keep** a hypothesis, only **5.4%** are. Drop the constraint and the forma
 ~4.4× more often; keep it and it's far more faithful — and the checkers *recover* the dropped
 constraint automatically where one exists.
 
+**From audit to repair — [`certified_theorems.lean`](certified_theorems.lean).** Because the dominant
+defect is a *dropped* side-condition, many of these are mechanically fixable: re-add the minimal
+condition and prove the corrected statement. This file is **90 kernel-proved corrected theorems**
+salvaged that way — run `lake env lean certified_theorems.lean` to re-check all 90 (each ends with
+`#print axioms`, no `sorryAx`; 82 are genuinely non-trivial inequalities, the remainder degenerate
+nonnegativity forms). The generative repair pipeline that produced them is kept private; this file is
+the verifiable output.
+
 ## The two defect classes
 
 **1. ℕ vs ℚ divergence (42).** Real/rational arithmetic rendered over ℕ, where `-` truncates at 0
