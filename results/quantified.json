@@ -2,10 +2,10 @@
   "dataset": "internlm/Lean-Workbook (13,517 unique statements)",
   "method": "counterexample search + kernel confirmation (native_decide for ℕ, norm_num for ℝ)",
   "nat_false_universals": {
-    "kernel_confirmed_false": 27,
-    "genuine_missing_hypothesis": 5,
+    "kernel_confirmed_false": 31,
+    "genuine_missing_hypothesis": 7,
     "domain_bug": 5,
-    "genuinely_wrong": 13,
+    "genuinely_wrong": 15,
     "samples": [
       {
         "id": "lean_workbook_plus_3854",
@@ -90,6 +90,15 @@
         "recovered": "no small lower-bound hypothesis recovers it"
       },
       {
+        "id": "lean_workbook_plus_24705",
+        "body": "(1 + 1 / n)^n < n + 1",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "holds for n≥2"
+      },
+      {
         "id": "lean_workbook_plus_26135",
         "body": "2011 * (2012 * (2012 + 1)) * (2013 * (2013 + 1) * (2013 + 2)) - 2013 * (2011 * (2011 + 1)) * (2012 * (2012 + 1) * (2012 + 2)) = 0",
         "witness": {
@@ -126,6 +135,15 @@
         },
         "kind": "genuinely-false",
         "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_37624",
+        "body": "(2 * k / (2 * k + 1) * (2 * k + 2) / (2 * k + 1))^k < 1",
+        "witness": {
+          "k": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "holds for k≥1"
       },
       {
         "id": "lean_workbook_plus_43469",
@@ -183,6 +201,15 @@
         "recovered": "holds for n≥3"
       },
       {
+        "id": "lean_workbook_plus_71706",
+        "body": "(1 + 1 / (n + 1)) ^ (n + 1) - (1 + 1 / n) ^ n < 1 / (n + 1)",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
         "id": "lean_workbook_plus_73375",
         "body": "(1 + 1 / n)^(n + 1) > (1 + 1 / (n + 1))^(n + 2)",
         "witness": {
@@ -216,6 +243,15 @@
           "n": 0
         },
         "kind": "ℕ-truncation-induced",
+        "recovered": "no small lower-bound hypothesis recovers it"
+      },
+      {
+        "id": "lean_workbook_plus_77847",
+        "body": "(1 + 1 / n)^n ≥ 2",
+        "witness": {
+          "n": 0
+        },
+        "kind": "genuinely-false",
         "recovered": "no small lower-bound hypothesis recovers it"
       },
       {
@@ -257,10 +293,10 @@
     ]
   },
   "real_false_universals_no_hypothesis": {
-    "candidates": 1330,
-    "kernel_confirmed_false": 320,
-    "recovered_holds_for_vars_gt_0": 169,
-    "false_even_on_positive_reals": 151,
+    "candidates": 1401,
+    "kernel_confirmed_false": 335,
+    "recovered_holds_for_vars_gt_0": 177,
+    "false_even_on_positive_reals": 158,
     "samples_false_on_positives": [
       {
         "id": "lean_workbook_plus_606",
@@ -383,15 +419,74 @@
     ]
   },
   "real_false_universals_WITH_hypothesis_CONTROL": {
-    "candidates": 723,
-    "false_despite_hypothesis": 16,
+    "candidates": 2187,
+    "false_despite_hypothesis": 119,
     "samples": [
+      {
+        "id": "lean_workbook_plus_49",
+        "hyps": "a > 0 ∧ b > 0",
+        "body": "(a + 1 / a) ^ 2 + (b + 1 / b) ^ 2 ≥ 25 / 2",
+        "witness": {
+          "a": "1",
+          "b": "1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_835",
+        "hyps": "a ≥ b ∧ b ≥ c ∧ c ≥ 0",
+        "body": "a * b / (c * c + c * a) + b * c / (a * a + a * b) + c * a / (b * b + b * c) ≥ a / (a + c) + b / (b + a) + c / (c + b)",
+        "witness": {
+          "a": "1",
+          "b": "1",
+          "c": "0"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_1696",
+        "hyps": "0 < a ∧ a < 1 ∧ 0 < b ∧ b < 1 ∧ 0 < c ∧ c < 1",
+        "body": "(1 + a) * (1 + b) * (1 + c) ≥ 2 * (1 + a + b + c)",
+        "witness": {
+          "a": "1/2",
+          "b": "1/2",
+          "c": "1/2"
+        }
+      },
       {
         "id": "lean_workbook_plus_1824",
         "hyps": "x^2 + y^2 + z^2 = 1",
         "body": "(x + y + z) / (1 + y^2 * x^2) ≥ 9 / 2 * ((y * z + 1) ^ 2 * (z * x + 1) ^ 2) / ((y * z + 1) ^ 2 * (z * x + 1) ^ 2 + (z * x + 1) ^ 2 * (x * y + 1) ^ 2 + (x * y + 1) ^ 2 * (y * z + 1) ^ 2)",
         "witness": {
           "x": "1",
+          "y": "0",
+          "z": "0"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_1924",
+        "hyps": "a ≥ b ∧ b ≥ c",
+        "body": "(a^2 / (a^2 + 2 * b * c) - b^2 / (b^2 + 2 * a * c)) * (a - b) + (c^2 / (c^2 + 2 * a * b) - a^2 / (a^2 + 2 * b * c)) * (b - c) + (b^2 / (b^2 + 2 * a * c) - c^2 / (c^2 + 2 * a * b)) * (c - a) ≥ 0",
+        "witness": {
+          "a": "1",
+          "b": "1",
+          "c": "1/2"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_2107",
+        "hyps": "a ≥ 0 ∧ b ≥ 0 ∧ c ≥ 0",
+        "body": "(a + b) ^ 2 / (2 * c ^ 2 + 3 * a * b) + (b + c) ^ 2 / (2 * a ^ 2 + 3 * b * c) + (c + a) ^ 2 / (2 * b ^ 2 + 3 * c * a) ≥ 7 / 3",
+        "witness": {
+          "a": "1",
+          "b": "0",
+          "c": "0"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_2259",
+        "hyps": "x ≥ 0 ∧ y ≥ 0 ∧ z ≥ 0",
+        "body": "(x / (x + 2 * y)) ^ 2 + (y / (y + 2 * z)) ^ 2 + (z / (z + 2 * x)) ^ 2 ≥ 1 / 3",
+        "witness": {
+          "x": "0",
           "y": "0",
           "z": "0"
         }
@@ -404,6 +499,45 @@
           "a": "1",
           "b": "1",
           "c": "-1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_3710",
+        "hyps": "a > 0 ∧ b > 0 ∧ c > 0 ∧ c ≥ b ∧ b ≥ a",
+        "body": "(c * (b - a) ^ 2 - b * (c - b) ^ 2 - a * (b - c) ^ 2) ≥ 0",
+        "witness": {
+          "a": "1",
+          "b": "1",
+          "c": "2"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_4307",
+        "hyps": "a * b * c > 0",
+        "body": "a^3 + b^3 + c^3 ≥ a^2 * c + b^2 * a + c^2 * b",
+        "witness": {
+          "a": "1",
+          "b": "-1",
+          "c": "-2"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_4980",
+        "hyps": "1/x + 1/y + 1/z = 1",
+        "body": "(x-1)*(y-1)*(z-1) ≥ 8",
+        "witness": {
+          "x": "1",
+          "y": "1",
+          "z": "-1"
+        }
+      },
+      {
+        "id": "lean_workbook_plus_5807",
+        "hyps": "a > 0 ∧ b > 0",
+        "body": "a^2 + b^2 + b^2 / a^2 ≥ a / b + b / a",
+        "witness": {
+          "a": "1",
+          "b": "1/2"
         }
       },
       {
@@ -427,6 +561,16 @@
         }
       },
       {
+        "id": "lean_workbook_plus_9641",
+        "hyps": "x^2 + y^2 + z^2 + x * y * z = 4",
+        "body": "8 + (1 - x^2) * (1 - y^2) * (1 - z^2) ≥ (1 + x) * (1 + y) * (1 + z)",
+        "witness": {
+          "x": "2",
+          "y": "2",
+          "z": "-2"
+        }
+      },
+      {
         "id": "lean_workbook_plus_9797",
         "hyps": "b^2 - a^2 = c^2 - b^2",
         "body": "1 / (b + c) - 1 / (a + c) = 1 / (a + b) - 1 / (a + c)",
@@ -435,116 +579,11 @@
           "b": "1",
           "c": "-1"
         }
-      },
-      {
-        "id": "lean_workbook_plus_13019",
-        "hyps": "(x + y + z) ^ 4 ≠ 0",
-        "body": "1 / (x + y + z) ^ 4 * 81 ≤ 1 / x ^ 4 + 1 / y ^ 4 + 1 / z ^ 4",
-        "witness": {
-          "x": "1",
-          "y": "1",
-          "z": "-1"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_18024",
-        "hyps": "0 < a ∧ 0 < b ∧ 0 < c",
-        "body": "a^3 + b^3 + c^3 + 3 * a * b * c ≥ (a + b + c)^3",
-        "witness": {
-          "a": "1",
-          "b": "1",
-          "c": "1"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_18771",
-        "hyps": "(x * y + 1) * (y * z + 1) * (z * x + 1) ≠ 0",
-        "body": "1 / (x * (1 + x) * (x + y * z)) + 1 / (y * (y + x * z) * (y + 1)) + 1 / ((z + 1) * z * (z + x * y)) ≥ 6 / ((x * y + 1) * (y * z + 1) * (z * x + 1))",
-        "witness": {
-          "x": "1",
-          "y": "1",
-          "z": "-2"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_23117",
-        "hyps": "0 < x ∧ 0 < y ∧ 0 < z",
-        "body": "x * (y + z) + y * (x + z) + z * (x + y) + 8 * x * y * z / (x + y + z) ≥ 5 * (x + y) * (y + z) * (z + x) / (x + y + z)",
-        "witness": {
-          "x": "1",
-          "y": "1",
-          "z": "1"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_28146",
-        "hyps": "x ≥ -1 ∧ y ≥ -1 ∧ z ≥ -1",
-        "body": "(1 + x ^ 2) / (1 + y + z ^ 2) + (1 + y ^ 2) / (1 + z + x ^ 2) + (1 + z ^ 2) / (1 + x + y ^ 2) ≥ 2",
-        "witness": {
-          "x": "1",
-          "y": "-1",
-          "z": "0"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_36123",
-        "hyps": "0 < a ∧ 0 < b ∧ 0 < c",
-        "body": "(a + b + c) * (a * b + b * c + c * a) ≤ (8 / 9) * (a + b) * (b + c) * (c + a)",
-        "witness": {
-          "a": "1",
-          "b": "1",
-          "c": "1"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_46825",
-        "hyps": "x^2 - 7 = x - 1",
-        "body": "x^2 - x - 8 = 0",
-        "witness": {
-          "x": "-2"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_48252",
-        "hyps": "0 < a ∧ 0 < b ∧ 0 < c",
-        "body": "(a^2 + a*c)/(2*b + a + c) + (b^2 + b*a)/(2*c + a + b) + (c^2 + c*b)/(2*a + b + c) ≥ 2*(a + b + c)",
-        "witness": {
-          "a": "1",
-          "b": "1",
-          "c": "1"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_49924",
-        "hyps": "(3 * y + x) * (3 * z + x) + (3 * x + y) * (3 * z + y) + (3 * x + z) * (3 * y + z) ≠ 0 ∧ (3 * y + x) * (3 * z + x) + (3 * x + z) * (3 * y + z) ≠ 0 ∧ (3 * x + y) * (3 * z + y) + (3 * x + z) * (3 * y + z) ≠ 0",
-        "body": "1 - (3 * x + y) * (3 * z + y) / (2 * (3 * x + y) * (3 * z + y) + (3 * x + z) * (3 * y + z)) - (3 * x + z) * (3 * y + z) / (2 * (3 * x + z) * (3 * y + z) + (3 * y + x) * (3 * z + x)) - (3 * y + x) * (3 * z + x) / (2 * (3 * y + x) * (3 * z + x) + (3 * x + y) * (3 * z + y)) ≥ 0",
-        "witness": {
-          "x": "1",
-          "y": "-1",
-          "z": "2"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_58783",
-        "hyps": "(a^3 + b^2*c + c)^2 ≥ (a^3 + 2*b*c)^2",
-        "body": "(a^4 + b^2*c^2 + 1)/(a^3 + 2*b*c)^2 ≥ 1/3",
-        "witness": {
-          "a": "1",
-          "b": "1",
-          "c": "2"
-        }
-      },
-      {
-        "id": "lean_workbook_plus_71460",
-        "hyps": "(a + b + c) * (a * b + b * c + c * a) ≠ 0",
-        "body": "(1 / (a + b) + 1 / (b + c) + 1 / (c + a)) ^ 3 ≥ 243 / (8 * (a + b + c) * (a * b + b * c + c * a))",
-        "witness": {
-          "a": "1",
-          "b": "1",
-          "c": "-3"
-        }
       }
     ]
   },
-  "thesis": "Dropping the side-condition breaks the formalization (320/1330 = 24% false over ℝ); keeping it makes it almost always faithful (16/723 = 2.2% false). So the defect family is DROPPED side-conditions, not wrong mathematics. Every counterexample is kernel-confirmed."
+  "thesis": "Dropping the side-condition breaks the formalization (335/1401 = 24% false over ℝ); keeping it keeps it far more faithful (~4.4x lower failure rate) (119/2187 = 5.4% false). So the defect family is DROPPED side-conditions, not wrong mathematics. Every counterexample is kernel-confirmed.",
+  "closed_arith_hazards": 49,
+  "total_kernel_confirmed_fidelity_findings": 534,
+  "correction_2026_06_26": "An earlier release reported 412 findings (ℕ 27 / ℝ 320 / ℝ-with-hyp 16) and a 2% with-hypothesis control. A bug in the candidate filter extracted identifiers from concatenated relation sides without a separator, forging phantom variables (e.g. 'n'+'n - 1' -> 'nn') and silently rejecting valid candidates — FALSE NEGATIVES ONLY, so no prior finding was invalid; the counts were undercounts. Fixed; corrected to 534 total (ℕ 31 / ℝ 335 / ℝ-with-hyp 119), control 24% vs 5.4%. Every finding kernel-confirmed (native_decide ℕ, norm_num ℝ)."
 }

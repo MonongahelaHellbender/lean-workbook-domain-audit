@@ -4,15 +4,19 @@ A reproducible, kernel-validated audit of **domain-fidelity bugs** in
 [`internlm/Lean-Workbook`](https://huggingface.co/datasets/internlm/Lean-Workbook), a widely-used
 autoformalized theorem-proving corpus.
 
-**Finding:** across 13,517 unique statements, the checkers flag **412 statements that claim
+**Finding:** across 13,517 unique statements, the checkers flag **534 statements that claim
 something other than their evident intent**, every one independently confirmed by the Lean 4
 kernel:
 
 - **49 closed-arithmetic domain hazards** (a silent ℕ/ℚ or exponent-truncation domain choice
   flips the truth value) — see [`results/HAZARDS.md`](results/HAZARDS.md);
-- **27 false universals over ℕ** + **320 false universals over ℝ** + **16 false *despite a stated
+- **31 false universals over ℕ** + **335 false universals over ℝ** + **119 false *despite a stated
   hypothesis*** (quantified statements disproved by a kernel-confirmed counterexample) — see
   [`results/QUANTIFIED.md`](results/QUANTIFIED.md).
+
+*(Correction, 2026-06-26: an earlier release reported 412 — a candidate-filter bug forged phantom
+variables and silently undercounted candidates, false negatives only. Fixed; corrected to 534. See
+the note in [`results/QUANTIFIED.md`](results/QUANTIFIED.md). The thesis is unchanged.)*
 
 These are defective formalizations: false (or vacuously true) as written, the great majority
 `:= by sorry`-stubbed (so presented as provable targets). This is the "the verification gap is in
@@ -23,9 +27,9 @@ never catch it.
 **The recurring lesson — and a control that proves it.** "False as formalized" is dominated by
 *dropped side-conditions* (a missing domain ascription, or a missing `n ≥ 1` / `a,b,c ≥ 0`), not by
 wrong mathematics. The control: of ℝ universals **without** a hypothesis, **24%** are false; of those
-that **keep** a hypothesis, only **2.2%** are. Drop the constraint and the formalization breaks;
-keep it and it's almost always faithful — and the checkers *recover* the dropped constraint
-automatically where one exists.
+that **keep** a hypothesis, only **5.4%** are. Drop the constraint and the formalization breaks
+~4.4× more often; keep it and it's far more faithful — and the checkers *recover* the dropped
+constraint automatically where one exists.
 
 ## The two defect classes
 

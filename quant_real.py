@@ -92,7 +92,7 @@ def parse_quant_real(fs):
     lhs, rel, rhs = sr
     if not (ARITH.match(lhs) and ARITH.match(rhs)):
         return None
-    if not set(NAME.findall(lhs + rhs)) <= set(vs):
+    if not set(NAME.findall(lhs + " " + rhs)) <= set(vs):   # SPACE-separated: don't forge a phantom var
         return None
     return vs, lhs, rel, rhs
 
@@ -174,7 +174,7 @@ def main():
     kc = [f for f in found if f["kernel_confirmed_false"]]
     out = {
         "dataset": f"internlm/Lean-Workbook ({len(seen)} unique statements)",
-        "scope": "universal, ℝ-only binders, bare arithmetic relation, ≤2 vars",
+        "scope": "universal, ℝ-only binders, bare arithmetic relation, ≤3 vars",
         "candidates": n_cand,
         "counterexample_found": len(found),
         "KERNEL_CONFIRMED_FALSE_over_ℝ": len(kc),

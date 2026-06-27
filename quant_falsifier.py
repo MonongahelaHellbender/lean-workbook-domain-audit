@@ -91,7 +91,7 @@ def parse_quant(fs):
     lhs, rel, rhs = sr
     if not (ARITH.match(lhs) and ARITH.match(rhs)):   # each side: arithmetic in the bound vars only
         return None
-    body = lhs + rhs
+    body = lhs + " " + rhs                          # SPACE-separated: 'n'+'n - 1' must not forge 'nn'
     if "-" not in body and "/" not in body:        # need a truncation-capable op
         return None
     if not set(NAME.findall(body)) <= set(vs):     # every name must be a bound ℕ var

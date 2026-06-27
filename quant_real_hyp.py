@@ -12,7 +12,7 @@ witnesses where every hypothesis holds and the body is false, (3) confirm in Lea
 
 These are SHARPER than the hypothesis-free finds: the formalization is false *even with the stated
 constraint*, so it is either a genuine error or still missing a further side-condition — not just a
-dropped positivity. ℝ-typed vars only, ≤2 vars, bare arithmetic; norm_num confirmation (ℝ).
+dropped positivity. ℝ-typed vars only, ≤3 vars, bare arithmetic; norm_num confirmation (ℝ).
 """
 import itertools
 import json
@@ -66,7 +66,7 @@ def as_relation(seg, vs):
     lhs, rel, rhs = sr
     if not (ARITH.match(lhs) and ARITH.match(rhs)):
         return None
-    if not set(NAME.findall(lhs + rhs)) <= set(vs):
+    if not set(NAME.findall(lhs + " " + rhs)) <= set(vs):   # SPACE-separated: don't forge a phantom var
         return None
     return lhs, rel, rhs
 
@@ -212,7 +212,7 @@ def main():
     kc = [f for f in found if f["kernel_confirmed_false"]]
     out = {
         "dataset": f"internlm/Lean-Workbook ({len(seen)} unique statements)",
-        "scope": "ℝ universals WITH hypotheses (Prop binders ∨ goal antecedents), ≤2 vars",
+        "scope": "ℝ universals WITH hypotheses (Prop binders ∨ goal antecedents), ≤3 vars",
         "candidates_with_hypotheses": n_cand,
         "counterexample_found": len(found),
         "KERNEL_CONFIRMED_FALSE_despite_hypothesis": len(kc),
